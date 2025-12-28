@@ -1,0 +1,14 @@
+[
+  { "bulan": "Jan", "pemasukan": 4000000, "pengeluaran": 2000000 },
+  { "bulan": "Feb", "pemasukan": 3000000, "pengeluaran": 1398000 },
+  { "bulan": "Mar", "pemasukan": 5000000, "pengeluaran": 3800000 },
+  { "bulan": "Apr", "pemasukan": 4780000, "pengeluaran": 3908000 },
+  { "bulan": "Mei", "pemasukan": 5000000, "pengeluaran": 5500000 },
+  { "bulan": "Jun", "pemasukan": 4780000, "pengeluaran": 3908000 },
+  { "bulan": "Jul", "pemasukan": 4780000, "pengeluaran": 3908000 },
+  { "bulan": "Agu", "pemasukan": 5200000, "pengeluaran": 4100000 },
+  { "bulan": "Sep", "pemasukan": 4900000, "pengeluaran": 4300000 },
+  { "bulan": "Okt", "pemasukan": 5300000, "pengeluaran": 4200000 },
+  { "bulan": "Nov", "pemasukan": 5100000, "pengeluaran": 4000000 },
+  { "bulan": "Des", "pemasukan": 6000000, "pengeluaran": 4500000 }
+]
