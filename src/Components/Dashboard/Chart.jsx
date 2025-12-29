@@ -21,9 +21,9 @@ import {
 
 const Chart = ({ data }) => {
   return (
-    <div className="w-full h-100 bg-white p-8 rounded shadow">
+    <div className="w-full h-90 bg-white p-2 rounded shadow">
       <h2 className="font-semibold ">Laporan Keuangan Tahunan</h2>
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" height="70%">
         <LineChart data={data}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="bulan" />
