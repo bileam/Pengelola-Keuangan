@@ -11,8 +11,16 @@ import Navbar from "../Components/Navbar";
 import Dashboard from "./Dashboard";
 import Transaksi from "./Transaksi";
 import Laporan from "./Laporan";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+
+  const logout = () => {
+    sessionStorage.removeItem("token");
+    navigate("/", { replace: true });
+  };
+
   const [burger, setBurger] = useState(false);
   const [selectDisplay, setSelectDisplay] = useState("dashboard");
 
@@ -81,6 +89,12 @@ const Sidebar = () => {
             Laporan
           </button>
         </div>
+        {/* <button
+          onClick={() => logout()}
+          className="cursor-pointer fixed bottom-5 left-5 "
+        >
+          logout
+        </button> */}
       </div>
       {/* ukuran table */}
       <div className="md:hidden block sticky top-0 bg-white z-100">
@@ -159,7 +173,7 @@ const Sidebar = () => {
 
       <div className="w-full">
         <div className="hidden md:block shadow w-full px-4 py-5 sticky top-0 bg-white z-100">
-          <Navbar title="Dashboard" />
+          <Navbar title="Dashboard" onClick={() => logout()} />
         </div>
         <div className="px-4 pb-6">
           {display}
