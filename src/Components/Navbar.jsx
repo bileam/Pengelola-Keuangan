@@ -7,13 +7,13 @@ const Navbar = ({ title, onClick }) => {
         <img src={das} alt="" />
         <h1>{title}</h1>
       </div>
-      <div className="border max-w-50 overflow-hidden  rounded p-2  flex gap-2 items-center">
-        <button>Selamat datang Hallo</button>
-      </div>
-      <div>
-        <button onClick={onClick} className="cursor-pointer">
-          logout
-        </button>
+      <div className="border flex flex-col text-[0.7rem] max-w-50 overflow-hidden  rounded p-1  items-center">
+        <button className="">Selamat datang Hallo</button>
+        <div>
+          <button onClick={onClick} className="cursor-pointer ">
+            logout
+          </button>
+        </div>
       </div>
     </div>
   );

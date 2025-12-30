@@ -1,6 +1,6 @@
 const Laporan = () => {
   return (
-    <div>
+    <div className="text-[0.9rem]">
       <h1>ini adalah laporan</h1>
     </div>
   );

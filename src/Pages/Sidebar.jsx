@@ -3,7 +3,9 @@ import laporanlg from "../assets/Icon/logolaporan.svg";
 import laporan from "../assets/Icon/laporan.svg";
 import transaksi from "../assets/Icon/transaksi.svg";
 import dashboard from "../assets/Icon/dasboar.svg";
+import kategori from "../assets/Icon/category.svg";
 import dompet2 from "../assets/icon2/dompet2.svg";
+import dom from "../assets/icon/dompet.svg";
 
 import react from "../assets/react.svg";
 import { useState } from "react";
@@ -12,6 +14,8 @@ import Dashboard from "./Dashboard";
 import Transaksi from "./Transaksi";
 import Laporan from "./Laporan";
 import { useNavigate } from "react-router-dom";
+import Dompet from "./Dompet";
+import Kategori from "./Kategori";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -32,6 +36,10 @@ const Sidebar = () => {
     display = <Transaksi />;
   } else if (selectDisplay === "laporan") {
     display = <Laporan />;
+  } else if (selectDisplay === "kategori") {
+    display = <Kategori />;
+  } else if (selectDisplay === "dompet") {
+    display = <Dompet />;
   }
 
   return (
@@ -48,7 +56,7 @@ const Sidebar = () => {
             Pengelola Keuangan pribadi
           </h1>
         </div>
-        <div className="flex text-[0.8rem] flex-col gap-5 items-start sticky top-20 ">
+        <div className="flex text-[0.8rem] flex-col gap-2 items-start sticky top-20 ">
           <button
             onClick={() => setSelectDisplay("dashboard")}
             className={`flex gap-5  items-center cursor-pointer ${
@@ -75,6 +83,34 @@ const Sidebar = () => {
             />
             Transaksi
           </button>
+          {/* update */}
+          <button
+            onClick={() => setSelectDisplay("kategori")}
+            className={`flex gap-5 ${
+              selectDisplay === "kategori" ? "bg-blue-400 scale-105" : ""
+            }   items-center cursor-pointer hover:bg-blue-400 py-2 px-3 rounded-xl transition duration-300 hover:scale-105`}
+          >
+            <img
+              src={kategori}
+              alt=""
+              className="object-center object-cover w-5 h-5 "
+            />
+            Kategori
+          </button>
+          <button
+            onClick={() => setSelectDisplay("dompet")}
+            className={`flex gap-5 ${
+              selectDisplay === "dompet" ? "bg-blue-400 scale-105" : ""
+            }   items-center cursor-pointer hover:bg-blue-400 py-2 px-3 rounded-xl transition duration-300 hover:scale-105`}
+          >
+            <img
+              src={dom}
+              alt=""
+              className="object-center object-cover w-5 h-5 "
+            />
+            Dompet
+          </button>
+          {/* end update */}
           <button
             onClick={() => setSelectDisplay("laporan")}
             className={`flex gap-5 ${
@@ -177,6 +213,8 @@ const Sidebar = () => {
         </div>
         <div className="px-4 pb-6">
           {display}
+          {/* <Dompet />
+          <Kategori /> */}
           {/* <Laporan /> */}
           {/* <Dashboard /> */}
           {/* <Transaksi /> */}

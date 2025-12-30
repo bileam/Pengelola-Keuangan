@@ -1,0 +1,94 @@
+gambaran besar halaman frontend
+1. dashboard
+2. transaksi
+3. kategori
+4. akun/dompet
+5. laporan/cart
+6. profil(opsional)
+
+
+===dasboard===
+(semua hasil di hitung dari transaksi)
+1. cart ringkasan
+- Total saldo
+- total pemasukan
+- total pengeluaran
+
+2. cart ringkasan
+(filter tahun,bulan,minggu)
+- chart tahunan
+- bulan
+- mingguan
+
+===Transaksi===
+1. data yang di input
+- tanggal (transaksion_date)
+- jumlah (amount)
+- kategori (kategori_id)
+- dompet/akun (account_id)
+- deskripsion (deskiripsi)
+
+2. data yang di tampilkan
+- tanggal
+- kategori
+- akun (cash,bca,bri(
+- tipe (expense,income)
+- jumlah (-5000,+5000000)
+📌 Catatan penting
+Frontend tidak memilih income/expense secara langsung, tapi:
+type diambil dari categories.type
+
+==Kategori===
+1. data yang di input
+- nama kategori(name)
+- tipe (type)
+2. yang di tampilkan 
+- gaji (income)
+- bonus (income)
+- makan (expense)
+- transport (expense)
+📌 Biasanya pakai:
+Badge hijau → income
+Bage merah → expense
+
+==akun/dompet===
+1.input
+- nama akun(cas,bca,dana)
+2.yang di tampilkan
+-cas (250)
+- bca (400.000)
+
+==laporan===
+1. data yang di tampilkan 
+🔹 DATA YANG DITAMPILKAN
+Chart Pemasukan vs Pengeluaran
+Bar Chart / Line Chart
+Filter: Mingguan / Bulanan / Tahunan
+
+📊 Chart Per Kategori
+Pie Chart
+Total pengeluaran per kategori
+
+
+Urutan Implementasi
+1. kategori
+2. akun
+3. transaksis
+4. transaksi
+5. dashboard
+6. chart
+
+
+warna
+sidebar (bg) (#efeef4)
+sidebar menu aktif/hover (#5677b3)
+sidebar menu bg (#e6e7f1)
+sidebar warna tulisan (#606475)
+navbar (#f3f2f6)
+
+content 
+button (#4c71b7)
+income(#4c71b7)
+expense(#c46362)
+
+

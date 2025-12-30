@@ -3,11 +3,10 @@ const Transaksi = () => {
     <div className="w-full shadow bg-white rounded p-5 flex flex-col gap-5">
       <div className="flex justify-between">
         <h1 className="text-[1.3rem]">Transaksi</h1>
-        <button className="py-2 px-4 bg-[#03369d] transition duration-300 hover:bg-blue-600 rounded-lg  cursor-pointer text-white">
+        <button className="py-2 px-4 bg-[#03369d] transition duration-300 hover:bg-blue-600 active:bg-blue-60 rounded-lg  cursor-pointer text-white">
           Add Transaksi
         </button>
       </div>
-
       <div className="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base ">
         <table className="w-full text-sm text-left rtl:text-right text-body">
           <thead className="text-sm text-body bg-neutral-secondary-medium border-b ">

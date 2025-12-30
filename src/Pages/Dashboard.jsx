@@ -11,7 +11,7 @@ const Dashboard = () => {
     <div className="flex flex-col gap-3">
       <ShowSaldow data={datakeuangan} />
       <Chart data={datawithsaldo} />
-      <Transaksi />
+      {/* <Transaksi /> */}
     </div>
   );
 };
