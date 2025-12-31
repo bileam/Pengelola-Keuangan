@@ -5,7 +5,7 @@ import transaksi from "../assets/Icon/transaksi.svg";
 import dashboard from "../assets/Icon/dasboar.svg";
 import kategori from "../assets/Icon/category.svg";
 import dompet2 from "../assets/icon2/dompet2.svg";
-import dom from "../assets/icon/dompet.svg";
+// import dom from "../assets/icon/dompet.svg";
 
 import react from "../assets/react.svg";
 import { useState } from "react";
@@ -104,7 +104,7 @@ const Sidebar = () => {
             }   items-center cursor-pointer hover:bg-blue-400 py-2 px-3 rounded-xl transition duration-300 hover:scale-105`}
           >
             <img
-              src={dom}
+              src={Dompet}
               alt=""
               className="object-center object-cover w-5 h-5 "
             />
