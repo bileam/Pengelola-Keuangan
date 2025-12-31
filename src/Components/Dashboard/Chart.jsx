@@ -21,7 +21,7 @@ import {
 
 const Chart = ({ data }) => {
   return (
-    <div className="w-full p-2 rounded  flex flex-col gap-4 justify-center">
+    <div className="w-full  rounded  flex flex-col gap-4 justify-center">
       <div className="flex md:flex-row flex-col justify-between gap-2 bg-white px-6 py-2 rounded">
         <div className="flex lg:gap-20 items-center md:justify-start justify-between">
           <h1 className="text-[#a6a0a0]">Tahun</h1>
