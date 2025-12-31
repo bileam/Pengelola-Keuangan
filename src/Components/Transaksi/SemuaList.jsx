@@ -1,10 +1,17 @@
+import { useState } from "react";
+import TambahkanTransaksi from "./TambahkanTransaksi";
+import donw from "../../assets/Icon/down.svg";
+import top from "../../assets/Icon/up.svg";
+
 const SemuaList = () => {
+  const [add, setAdd] = useState(true);
   return (
     <div className="flex flex-col gap-5 mt-6">
-      <div className=" px-2 py-2 bg-white rounded flex justify-between items-center">
-        <div className="grid grid-cols-2 gap-5 text-[0.9rem] ">
-          <h1>silakan mulai transaksi anda...</h1>
-          {/* <select
+      <div className=" px-2 py-2 bg-white rounded flex flex-col  ">
+        <div className="flex justify-between w-full">
+          <div className="grid grid-cols-2 gap-5 text-[0.9rem] ">
+            <h1>silakan mulai transaksi anda...</h1>
+            {/* <select
             className="inline-block py-2 px-5   outline-none border-[#cdcdcd]  rounded "
             name=""
             id=""
@@ -20,11 +27,30 @@ const SemuaList = () => {
           >
             <option value="">Semua ketegori</option>
           </select> */}
+          </div>
+          <div>
+            <button
+              onClick={() => setAdd((prev) => !prev)}
+              className="py-1 px-2 bg-[#397cf7] text-[0.9rem]  transition duration-300 hover:bg-blue-600 rounded-lg  cursor-pointer text-white"
+            >
+              <img
+                src={donw}
+                alt=""
+                className={`${
+                  add ? "rotate-0" : "rotate-180"
+                } transform transition duration-500 ease-in-out`}
+              />
+            </button>
+          </div>
         </div>
-        <div>
-          <button className="py-1 px-2 bg-[#397cf7] text-[0.9rem]  transition duration-300 hover:bg-blue-600 rounded-lg  cursor-pointer text-white">
-            Tambahkan Transaksi
-          </button>
+        <div
+          className={`${
+            add
+              ? "md:max-h-50 max-h-100 opacity-100 delay-200"
+              : "max-h-0 opacity-0"
+          } overflow-hidden transform transition duration-700 ease-in-out`}
+        >
+          <TambahkanTransaksi />
         </div>
       </div>
       <div>
