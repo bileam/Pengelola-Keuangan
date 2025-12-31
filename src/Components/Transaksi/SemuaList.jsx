@@ -6,7 +6,7 @@ import top from "../../assets/Icon/up.svg";
 const SemuaList = () => {
   const [add, setAdd] = useState(true);
   return (
-    <div className="flex flex-col gap-5 mt-6">
+    <div className="flex flex-col gap-5 mt-2">
       <div className=" px-2 py-2 bg-white rounded flex flex-col  ">
         <div className="flex justify-between w-full">
           <div className="grid grid-cols-2 gap-5 text-[0.9rem] ">
@@ -46,7 +46,7 @@ const SemuaList = () => {
         <div
           className={`${
             add
-              ? "md:max-h-50 max-h-100 opacity-100 delay-200"
+              ? "md:max-h-60 max-h-100 opacity-100 delay-200"
               : "max-h-0 opacity-0"
           } overflow-hidden transform transition duration-700 ease-in-out`}
         >
