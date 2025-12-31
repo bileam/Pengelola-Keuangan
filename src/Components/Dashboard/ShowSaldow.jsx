@@ -16,18 +16,19 @@ const ShowSaldow = ({ data }) => {
       </div> */}
       <div className="flex  flex-wrap  md:flex-nowrap md:flex-row justify-start  gap-2 md:gap-6 ">
         <div className="py-3 md:px-7 px-2  flex flex-col  justify-center  bg-white shadow rounded text-[1rem] hover:scale-105 transition duration-500">
-          <h>Total Pemasukan</h>
+          <h1>Saldo</h1>
+          <h1 className="text-[1.2rem] text-[#4fa15c]">
+            {saldoAkhir.toLocaleString("id-ID")}
+          </h1>
+        </div>
+        <div className="py-3 md:px-7 px-2  flex flex-col  justify-center  bg-white shadow rounded text-[1rem] hover:scale-105 transition duration-500">
+          <h>Pemasukan </h>
           <h1 className="text-[1.2rem] text-[#2d8380]">
             {" "}
             {summary.totalPemasukan.toLocaleString("id-ID")}
           </h1>
         </div>
-        <div className="py-3 md:px-7 px-2  flex flex-col  justify-center  bg-white shadow rounded text-[1rem] hover:scale-105 transition duration-500">
-          <h1>Saldo Sekarang</h1>
-          <h1 className="text-[1.2rem] text-[#4fa15c]">
-            {saldoAkhir.toLocaleString("id-ID")}
-          </h1>
-        </div>
+
         <div className="py-3 md:px-7 px-2  flex flex-col  justify-center  bg-white shadow rounded text-[1rem] hover:scale-105 transition duration-500">
           <h1>Pengeluaran</h1>
           <h1 className="text-[1.2rem] text-[#cd5350]">

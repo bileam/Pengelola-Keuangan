@@ -27,9 +27,25 @@ const SemuaList = () => {
           </button>
         </div>
       </div>
+      <div>
+        <div className="text-[0.8rem] md:hidden flex flex-col justify-between px-5">
+          <h1 className="text-[#606475]">Catatan belanja waktu</h1>
+          <div className="flex gap-3 justify-between">
+            <select name="" id="" className="outline-none pr-5">
+              <option value="">tanggal</option>
+            </select>
+            <select name="" id="" className="outline-none pr-5">
+              <option value="">Kategori</option>
+            </select>
+            <button className="px-10 py-1 text-white bg-green-800 rounded cursor-pointer hover:bg-green-700 active:bg-green-900 transform duration-300 transition-colors">
+              Cari
+            </button>
+          </div>
+        </div>
+      </div>
       <div className="px-2 py-5 bg-white rounded ">
         <div className="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base flex flex-col gap-5">
-          <div className="text-[0.8rem] flex justify-between px-5">
+          <div className="text-[0.8rem] hidden md:flex justify-between px-5">
             <h1 className="text-[#606475]">Catatan belanja waktu</h1>
             <div className="flex gap-3">
               <select name="" id="" className="outline-none px-5">

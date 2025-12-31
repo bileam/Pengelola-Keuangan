@@ -17,7 +17,7 @@ const Login = () => {
     }
   };
   return (
-    <div className="box">
+    <div className="box px-10 md:px-0">
       <form onSubmit={handleSubmit} action="" className="">
         <h1 className="text-h1 text-center">
           <span>L</span>
