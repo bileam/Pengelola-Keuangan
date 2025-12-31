@@ -7,4 +7,3 @@ const Kategori = () => {
 };
 
 export default Kategori;
-b;
