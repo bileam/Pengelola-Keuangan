@@ -22,14 +22,14 @@ import {
 const Chart = ({ data }) => {
   return (
     <div className="w-full p-2 rounded  flex flex-col gap-4 justify-center">
-      <div className="flex justify-between gap-2 bg-white px-6 py-2 rounded">
-        <div className="flex gap-20 items-center ">
+      <div className="flex md:flex-row flex-col justify-between gap-2 bg-white px-6 py-2 rounded">
+        <div className="flex lg:gap-20 items-center md:justify-start justify-between">
           <h1 className="text-[#a6a0a0]">Tahun</h1>
           <select name="" id="" className="px-2 outline-none">
             <option value="">2025</option>
           </select>
         </div>
-        <div className="flex gap-20 items-center">
+        <div className="flex lg:sgap-20 items-center md:justify-start justify-between">
           <h1 className="text-[#a6a0a0]">Bulan</h1>
           <select name="" id="" className="px-2 outline-none">
             <option value="" className="rounded">
@@ -37,7 +37,7 @@ const Chart = ({ data }) => {
             </option>
           </select>
         </div>
-        <div className="flex gap-20 items-center">
+        <div className="flex lg:gap-20 items-center md:justify-start justify-between">
           <h1 className="text-[#a6a0a0]">Minggu</h1>
           <select name="" id="" className="px-2 outline-none">
             <option value="">01-07 januari</option>
