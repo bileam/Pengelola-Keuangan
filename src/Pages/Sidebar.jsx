@@ -192,6 +192,28 @@ const Sidebar = () => {
               Transaksi
             </button>
             <button
+              onClick={() => setSelectDisplay("kategori")}
+              className="flex gap-5 cursor-pointer items-center hover:bg-blue-400 p-2 rounded-xl transition duration-300 hover:scale-105"
+            >
+              <img
+                src={kategori}
+                alt=""
+                className="object-center object-cover w-5 h-5 "
+              />
+              Kategori
+            </button>
+            <button
+              onClick={() => setSelectDisplay("dompet")}
+              className="flex gap-5 cursor-pointer items-center hover:bg-blue-400 p-2 rounded-xl transition duration-300 hover:scale-105"
+            >
+              <img
+                src={Dompet}
+                alt=""
+                className="object-center object-cover w-5 h-5 "
+              />
+              Dompet
+            </button>
+            <button
               onClick={() => setSelectDisplay("laporan")}
               className="flex gap-5 cursor-pointer items-center hover:bg-blue-400 p-2 rounded-xl transition duration-300 hover:scale-105"
             >
