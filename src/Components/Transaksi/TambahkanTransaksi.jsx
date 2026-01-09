@@ -49,7 +49,7 @@ const TambahkanTransaksi = () => {
     "
           >
             {/* metode */}
-            <option disabled>Pilih Metode </option>
+            <option >Pilih Metode </option>
             {datas.map((item, index) => (
               <option key={index} value={item._id}>
                 {item.nama}
@@ -73,7 +73,7 @@ const TambahkanTransaksi = () => {
       outline-none
     "
           >
-            <option disabled>Kategori </option>
+            <option >Kategori </option>
             {dataKategori.map((item, index) => (
               <option key={index} value={item._id}>
                 {item.nama}
