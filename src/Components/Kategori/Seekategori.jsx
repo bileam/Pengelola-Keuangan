@@ -1,4 +1,21 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 const Seekategori = () => {
+  const [datas, setDatas] = useState([]);
+
+  const getAll = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/kategori/get");
+      setDatas(response.data);
+    } catch (error) {
+    } finally {
+    }
+  };
+  useEffect(() => {
+    getAll();
+  }, []);
+
   return (
     <div>
       <div className="px-2 py-5 bg-white rounded ">
@@ -32,7 +49,31 @@ const Seekategori = () => {
               </tr>
             </thead>
             <tbody className="text-center">
-              <tr className="bg-neutral-primary-soft border-b border-default hover:bg-neutral-secondary-medium">
+              {datas.map((item, index) => (
+                <tr
+                  key={index}
+                  className="bg-neutral-primary-soft border-b border-default hover:bg-neutral-secondary-medium"
+                >
+                  <th
+                    scope="row"
+                    className="px-6 py-4 font-medium text-heading whitespace-nowrap"
+                  >
+                    {item.nama}
+                  </th>
+                  <td className="px-6 py-4 text-center flex justify-center">
+                    <h1
+                      className={`${
+                        item.tipe === "income" ? "bg-green-800 " : "bg-red-600"
+                      }  rounded-full w-14 text-white `}
+                    >
+                      {item.tipe}
+                    </h1>
+                  </td>
+
+                  <td className="px-6 py-4">hapus || edit</td>
+                </tr>
+              ))}
+              {/* <tr className="bg-neutral-primary-soft border-b border-default hover:bg-neutral-secondary-medium">
                 <th
                   scope="row"
                   className="px-6 py-4 font-medium text-heading whitespace-nowrap"
@@ -46,22 +87,7 @@ const Seekategori = () => {
                 </td>
 
                 <td className="px-6 py-4">hapus || edit</td>
-              </tr>
-              <tr className="bg-neutral-primary-soft border-b border-default hover:bg-neutral-secondary-medium">
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-heading whitespace-nowrap"
-                >
-                  Makan
-                </th>
-                <td className="px-6 py-4 text-center flex justify-center">
-                  <h1 className="bg-green-800  rounded-full w-14 text-white ">
-                    expanse
-                  </h1>
-                </td>
-
-                <td className="px-6 py-4">hapus || edit</td>
-              </tr>
+              </tr> */}
             </tbody>
           </table>
         </div>

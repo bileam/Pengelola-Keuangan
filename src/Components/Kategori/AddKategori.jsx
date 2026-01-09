@@ -2,6 +2,7 @@ import { useState } from "react";
 import donw from "../../assets/Icon/down.svg";
 const Addkategori = () => {
   const [add, setAdd] = useState(true);
+  
   return (
     <div className="bg-white p-2 rounded">
       <div className="flex flex-col gap-2 ">

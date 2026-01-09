@@ -1,4 +1,34 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 const TambahkanTransaksi = () => {
+  const [datas, setDatas] = useState([]);
+  const [dataKategori, setKategori] = useState([]);
+
+  const getAllDompet = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/dompet/get");
+      // console.log(response.data);
+      setDatas(response.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getAllKategori = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/kategori/get");
+      setKategori(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getAllDompet();
+    getAllKategori();
+  }, []);
+
   return (
     <div className="text-[0.9rem] ">
       <form action="" className="flex md:gap-10 gap-2  ">
@@ -18,10 +48,13 @@ const TambahkanTransaksi = () => {
       outline-none
     "
           >
-            <option>Pilih Dompet </option>
-            <option>Cash</option>
-            <option>Bca</option>
-            <option>Bri</option>
+            {/* metode */}
+            <option disabled>Pilih Metode </option>
+            {datas.map((item, index) => (
+              <option key={index} value={item._id}>
+                {item.nama}
+              </option>
+            ))}
           </select>
           <input
             type="text"
@@ -32,36 +65,26 @@ const TambahkanTransaksi = () => {
         <div className="w-full flex-col flex gap-1">
           <select
             className="
-      w-full appearance-none
-      border-b 
+           w-full appearance-none
+           border-b 
       bg-white px-2 py-2 pr-10
       text-sm text-gray-700
      
       outline-none
     "
           >
-            <option>Kategori </option>
-            <option>Makan</option>
-            <option>gaji</option>
-            <option>Transport</option>
+            <option disabled>Kategori </option>
+            {dataKategori.map((item, index) => (
+              <option key={index} value={item._id}>
+                {item.nama}
+              </option>
+            ))}
           </select>
-
-          {/* <select
-            className="
-      w-full appearance-none
-      border-b 
-      bg-white px-2 py-2 pr-10
-      text-sm text-gray-700
-     
-      outline-none
-    "
-          >
-            <option>Type </option>
-            <option>Income </option>
-            <option>Expense </option>
-          </select> */}
-
-          <input type="text" placeholder="jumlah" className="outline-none  " />
+          <input
+            type="Number"
+            placeholder="jumlah"
+            className="outline-none  "
+          />
           <button
             type="submit"
             className="w-60 bg-blue-600 text-white cursor-pointer"

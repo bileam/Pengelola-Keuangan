@@ -1,9 +1,45 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TambahkanTransaksi from "./TambahkanTransaksi";
 import donw from "../../assets/Icon/down.svg";
 import top from "../../assets/Icon/up.svg";
+import axios from "axios";
 
 const SemuaList = () => {
+  const [dataskita, setdataskita] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [warna, setWarna] = useState("");
+  const [kategori, setKategori] = useState([]);
+
+  const [err, setErr] = useState(null);
+
+  const getData = async () => {
+    try {
+      const res = await axios.get("http://localhost:3000/transaksi/get");
+      setdataskita(res.data.data);
+      const tipe = res.data.data.map((item) => item.tipeKategori);
+      setWarna(tipe);
+    } catch (error) {
+      setErr(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getAllKategori = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/kategori/get");
+      setKategori(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+    getAllKategori();
+  }, []);
+  // console.log(warna);
+
   const [add, setAdd] = useState(true);
   return (
     <div className="flex flex-col gap-5 mt-2">
@@ -11,22 +47,6 @@ const SemuaList = () => {
         <div className="flex justify-between w-full">
           <div className="grid grid-cols-2 gap-5 text-[0.9rem] ">
             <h1>silakan mulai transaksi anda...</h1>
-            {/* <select
-            className="inline-block py-2 px-5   outline-none border-[#cdcdcd]  rounded "
-            name=""
-            id=""
-          >
-            <option value="" className="rounded">
-              12 april 2025
-            </option>
-          </select>
-          <select
-            name=""
-            id=""
-            className="inline-block py-2 px-2  border-[#cdcdcd] rounded outline-none"
-          >
-            <option value="">Semua ketegori</option>
-          </select> */}
           </div>
           <div>
             <button
@@ -55,13 +75,19 @@ const SemuaList = () => {
       </div>
       <div>
         <div className="text-[0.8rem] md:hidden flex flex-col justify-between px-5">
-          <h1 className="text-[#606475]">Catatan belanja waktu</h1>
+          <h1 className="text-[#606475]">Catatan belanja waktu...</h1>
           <div className="flex gap-3 justify-between">
-            <select name="" id="" className="outline-none pr-5">
-              <option value="">tanggal</option>
+            <select name="" id="" className="pr-5">
+              <option value="">tanggal kita</option>
             </select>
             <select name="" id="" className="outline-none pr-5">
               <option value="">Kategori</option>
+              {/* <option value="">tes</option>  */}
+              {/* {kategori.map((item, index) => (
+                <option key={index} value={item._id}>
+                  {item.nama}
+                </option>
+              ))} */}
             </select>
             <button className="px-10 py-1 text-white bg-green-800 rounded cursor-pointer hover:bg-green-700 active:bg-green-900 transform duration-300 transition-colors">
               Cari
@@ -72,13 +98,22 @@ const SemuaList = () => {
       <div className="px-2 py-5 bg-white rounded ">
         <div className="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base flex flex-col gap-5">
           <div className="text-[0.8rem] hidden md:flex justify-between px-5">
-            <h1 className="text-[#606475]">Catatan belanja waktu</h1>
+            <h1 className="text-[#606475]">Catatan belanja waktu....</h1>
             <div className="flex gap-3">
               <select name="" id="" className="outline-none px-5">
-                <option value="">tanggal</option>
+                <option value="" disabled>
+                  tanggal
+                </option>
               </select>
               <select name="" id="" className="outline-none px-5">
-                <option value="">Kategori</option>
+                <option value="" disabled className="disabled">
+                  Kategori
+                </option>
+                {kategori.map((item, index) => (
+                  <option key={index} value={item._id}>
+                    {item.nama}
+                  </option>
+                ))}
               </select>
               <button className="px-10 py-1 text-white bg-green-800 rounded cursor-pointer hover:bg-green-700 active:bg-green-900 transform duration-300 transition-colors">
                 Cari
@@ -108,8 +143,60 @@ const SemuaList = () => {
                 </th>
               </tr>
             </thead>
-            <tbody className="text-center">
-              <tr className="bg-neutral-primary-soft border-b border-default hover:bg-neutral-secondary-medium">
+            <tbody className="text-center ">
+              {dataskita.map((item, index) => (
+                <tr
+                  key={index}
+                  className="bg-neutral-primary-soft border-b border-default hover:bg-neutral-secondary-medium"
+                >
+                  <th
+                    scope="row"
+                    className="px-6 py-4 font-medium text-heading whitespace-nowrap"
+                  >
+                    {item.tanggal ? item.tanggal.split("T")[0] : "0"}
+                  </th>
+                  <td className="px-6 py-4 text-center">
+                    <h1
+                      className={`${
+                        item.tipeKategori === "expense"
+                          ? "bg-red-600"
+                          : "bg-green-800"
+                      }  rounded-full w-14 text-white`}
+                    >
+                      {item.kategori}
+                    </h1>
+                  </td>
+                  <td className="px-6 py-4">{item.dompet}</td>
+                  <td className="px-6 py-4 text-center">
+                    {" "}
+                    <h1
+                      className={`${
+                        item.tipeKategori === "expense"
+                          ? "bg-red-600"
+                          : "bg-green-800"
+                      } rounded-full w-15 text-white`}
+                    >
+                      {item.tipeKategori}
+                    </h1>
+                  </td>
+                  <td className="px-6 py-4">
+                    {" "}
+                    <span
+                      className={`${
+                        item.tipeKategori === "expense"
+                          ? "text-red-600"
+                          : "text-green-800"
+                      }
+                      }  font-extrabold`}
+                    >
+                      {item.tipeKategori === "income" ? "+" : "-"}
+                    </span>{" "}
+                    {item.jumlah.toLocaleString("id-ID")}
+                  </td>
+                  <td className="px-6 py-4">hapus || edit</td>
+                </tr>
+              ))}
+              {/* <tr className="bg-neutral-primary-soft border-b border-default hover:bg-neutral-secondary-medium">
                 <th
                   scope="row"
                   className="px-6 py-4 font-medium text-heading whitespace-nowrap"
@@ -130,29 +217,7 @@ const SemuaList = () => {
                 </td>
                 <td className="px-6 py-4">- 50.000</td>
                 <td className="px-6 py-4">hapus || edit</td>
-              </tr>
-              <tr className="bg-neutral-primary-soft border-b border-default hover:bg-neutral-secondary-medium">
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-heading whitespace-nowrap"
-                >
-                  03-05-2025
-                </th>
-                <td className="px-6 py-4 text-center">
-                  <h1 className="bg-green-800  rounded-full w-14 text-white">
-                    Gaji
-                  </h1>
-                </td>
-                <td className="px-6 py-4"> BCA</td>
-                <td className="px-6 py-4 text-center">
-                  {" "}
-                  <h1 className="bg-green-800  rounded-full w-15 text-white">
-                    Income
-                  </h1>
-                </td>
-                <td className="px-6 py-4">+ 150.000</td>
-                <td className="px-6 py-4">hapus || edit</td>
-              </tr>
+              </tr> */}
             </tbody>
           </table>
         </div>
