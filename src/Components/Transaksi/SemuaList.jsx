@@ -9,6 +9,7 @@ const SemuaList = () => {
   const [loading, setLoading] = useState(true);
   const [warna, setWarna] = useState("");
   const [kategori, setKategori] = useState([]);
+  const [add, setAdd] = useState(false);
 
   const [err, setErr] = useState(null);
 
@@ -37,14 +38,27 @@ const SemuaList = () => {
   useEffect(() => {
     getData();
     getAllKategori();
-  }, []);
+  }, [dataskita]);
   // console.log(warna);
 
-  const [add, setAdd] = useState(true);
+  const handledelete = async (id) => {
+    // console.log("di tekan : ", id);
+    try {
+      const hapus = await axios.delete(
+        `http://localhost:3000/transaksi/delete/${id}`
+      );
+      if (hapus) {
+        alert("data berhasil di hapus");
+      }
+    } catch (error) {
+      alert("gagal");
+    }
+  };
+
   return (
     <div className="flex flex-col gap-5 mt-2">
       <div className=" px-2 py-2 bg-white rounded flex flex-col  ">
-        <div className="flex justify-between w-full">
+        <div className="flex justify-between w-full items-center text-[#918c8c]">
           <div className="grid grid-cols-2 gap-5 text-[0.9rem] ">
             <h1>silakan mulai transaksi anda...</h1>
           </div>
@@ -101,9 +115,7 @@ const SemuaList = () => {
             <h1 className="text-[#606475]">Catatan belanja waktu....</h1>
             <div className="flex gap-3">
               <select name="" id="" className="outline-none px-5">
-                <option value="" disabled>
-                  tanggal
-                </option>
+                <option value="">tanggal</option>
               </select>
               <select name="" id="" className="outline-none px-5">
                 <option value="" disabled className="disabled">
@@ -139,6 +151,9 @@ const SemuaList = () => {
                   Jumlah
                 </th>
                 <th scope="col" className="px-6 py-3 font-medium">
+                  Deskripsi
+                </th>
+                <th scope="col" className="px-6 py-3 font-medium">
                   Aksi
                 </th>
               </tr>
@@ -161,7 +176,7 @@ const SemuaList = () => {
                         item.tipeKategori === "expense"
                           ? "bg-red-600"
                           : "bg-green-800"
-                      }  rounded-full w-14 text-white`}
+                      }  rounded-full  text-white`}
                     >
                       {item.kategori}
                     </h1>
@@ -193,31 +208,19 @@ const SemuaList = () => {
                     </span>{" "}
                     {item.jumlah.toLocaleString("id-ID")}
                   </td>
-                  <td className="px-6 py-4">hapus || edit</td>
+                  <td className="px-6 py-4">{item.deskripsi}</td>
+                  <td className="px-6 py-4">
+                    <button
+                      className="cursor-pointer"
+                      onClick={() => handledelete(item._id)}
+                    >
+                      {" "}
+                      hapus{" "}
+                    </button>{" "}
+                    || <button> edit </button>
+                  </td>
                 </tr>
               ))}
-              {/* <tr className="bg-neutral-primary-soft border-b border-default hover:bg-neutral-secondary-medium">
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-heading whitespace-nowrap"
-                >
-                  02-05-2025
-                </th>
-                <td className="px-6 py-4 text-center">
-                  <h1 className="bg-red-600  rounded-full w-14 text-white">
-                    makan
-                  </h1>
-                </td>
-                <td className="px-6 py-4"> Cash</td>
-                <td className="px-6 py-4 text-center">
-                  {" "}
-                  <h1 className="bg-red-600  rounded-full w-15 text-white">
-                    Expense
-                  </h1>
-                </td>
-                <td className="px-6 py-4">- 50.000</td>
-                <td className="px-6 py-4">hapus || edit</td>
-              </tr> */}
             </tbody>
           </table>
         </div>

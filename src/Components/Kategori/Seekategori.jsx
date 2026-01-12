@@ -14,14 +14,26 @@ const Seekategori = () => {
   };
   useEffect(() => {
     getAll();
-  }, []);
+  }, [datas]);
+
+  const handleHapus = async (id) => {
+    console.log(id);
+
+    try {
+      await axios.delete(`http://localhost:3000/kategori/delete/${id}`);
+      alert("berhasil di hapus");
+    } catch (error) {
+      console.log(error);
+      alert("gagal di hapus");
+    }
+  };
 
   return (
     <div>
       <div className="px-2 py-5 bg-white rounded ">
         <div className="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base flex flex-col gap-5">
           <div className="text-[0.8rem] hidden md:flex justify-between px-5">
-            <h1 className="text-[#606475]">Catatan belanja waktu</h1>
+            <h1 className="text-[#606475]">Catatan Kategori waktu</h1>
             <div className="flex gap-3">
               <select name="" id="" className="outline-none px-5">
                 <option value="">tanggal</option>
@@ -70,24 +82,17 @@ const Seekategori = () => {
                     </h1>
                   </td>
 
-                  <td className="px-6 py-4">hapus || edit</td>
+                  <td className="">
+                    <button
+                      className="cursor-pointer"
+                      onClick={() => handleHapus(item._id)}
+                    >
+                      hapus
+                    </button>
+                  </td>
                 </tr>
               ))}
-              {/* <tr className="bg-neutral-primary-soft border-b border-default hover:bg-neutral-secondary-medium">
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-heading whitespace-nowrap"
-                >
-                  Gaji
-                </th>
-                <td className="px-6 py-4 text-center flex justify-center">
-                  <h1 className="bg-red-600  b rounded-full w-14 text-white">
-                    Income
-                  </h1>
-                </td>
-
-                <td className="px-6 py-4">hapus || edit</td>
-              </tr> */}
+           
             </tbody>
           </table>
         </div>

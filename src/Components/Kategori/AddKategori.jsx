@@ -1,8 +1,30 @@
 import { useState } from "react";
 import donw from "../../assets/Icon/down.svg";
+import axios from "axios";
 const Addkategori = () => {
-  const [add, setAdd] = useState(true);
-  
+  const [add, setAdd] = useState(false);
+  const [form, setForm] = useState({
+    nama: "",
+    tipe: "",
+  });
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+  const handlesubmit = async (e) => {
+    e.preventDefault();
+    // console.log(form);
+    try {
+      await axios.post("http://localhost:3000/kategori/post", form);
+      alert("data berhasil di tambahkan");
+    } catch (error) {
+      alert("data gagal di tambahkan ");
+      console.log(error);
+    }
+  };
+
+  const handleDelete = () => {};
+
   return (
     <div className="bg-white p-2 rounded">
       <div className="flex flex-col gap-2 ">
@@ -29,19 +51,39 @@ const Addkategori = () => {
           } transition duration-500 `}
         >
           <div className={``}>
-            <form action="" className="flex  gap-2 flex-col  " onChange="">
+            <form
+              action=""
+              className="flex  gap-2 flex-col  "
+              onSubmit={handlesubmit}
+            >
               <div className="w-full gap-1 flex-col flex ">
                 <input
+                  name="nama"
+                  value={form.nama}
+                  onChange={handleChange}
                   type="text"
                   placeholder="Kategori "
                   className="outline-none  border-b "
                 />
 
-                <input
-                  type="text"
-                  placeholder="type"
-                  className="outline-none  "
-                />
+                <select
+                  name="tipe"
+                  value={form.tipe}
+                  onChange={handleChange}
+                  className="
+      w-full appearance-none
+      border-b 
+      bg-white px-2 py-2 pr-10
+      text-sm text-gray-700
+     
+      outline-none
+    "
+                >
+                  {/* metode */}
+                  <option>Pilih Metode </option>
+                  <option value="income"> income </option>
+                  <option value="expense">expense </option>
+                </select>
               </div>
               <button
                 type="submit"
